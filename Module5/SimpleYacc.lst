@@ -1,0 +1,107 @@
+
+// ==========================================================================
+//  GPPG error listing for yacc source file <SimpleYacc.y - 22.10.2018 0:16:09>
+// ==========================================================================
+//  Version:  1.5.0
+//  Machine:  USER-PC
+//  DateTime: 22.10.2018 0:17:56
+//  UserName: user
+// ==========================================================================
+
+
+%{
+// Ýòè îáúÿâëåíèÿ äîáàâëÿþòñÿ â êëàññ GPPGParser, ïðåäñòàâëÿþùèé ñîáîé ïàðñåð, ãåíåðèðóåìûé ñèñòåìîé gppg
+    public Parser(AbstractScanner<int, LexLocation> scanner) : base(scanner) { }
+%}
+
+%output = SimpleYacc.cs
+
+%namespace SimpleParser
+
+%token BEGIN END CYCLE INUM RNUM ID ASSIGN SEMICOLON WHILE DO REPEAT UNTIL FOR TO OPBRACKET CLBRACKET WRITE IF THEN ELSE COMMA VAR PLUS MINUS DIV MULT 
+
+%%
+// Error: NonTerminal symbol "OPENBRACKET" has no productions
+// Error: NonTerminal symbol "CLOSEBRACKET" has no productions
+// Warning: Terminating CLOSEBRACKET fixes the following size-1 NonTerminal set
+   // {CLOSEBRACKET}
+// Error: There are 2 non-terminating NonTerminal Symbols
+   //  {OPENBRACKET, CLOSEBRACKET}
+// Warning: Terminating OPENBRACKET fixes the following size-1 NonTerminal set
+   // {OPENBRACKET}
+// ----------------------------------------------------------------------------
+
+progr   : block
+		;
+
+stlist	: statement 
+		| stlist SEMICOLON statement 
+		;
+
+statement: assign
+		| block  
+		| cycle
+		| while  
+		| repeat
+		| for
+		| write
+		| if
+		| var
+		;
+
+ident 	: ID 
+		;
+
+expr	: T
+		| expr PLUS T
+		| expr MINUS T
+		;
+
+T		: F
+		| T MULT F
+		| T DIV F
+		;
+
+F		: ident
+		| INUM 
+		| OPENBRACKET expr CLOSEBRACKET
+		;
+
+
+assign 	: ident ASSIGN expr 
+		;
+
+block	: BEGIN stlist END 
+		;
+
+cycle	: CYCLE expr statement 
+		;
+
+while   : WHILE expr DO statement
+		;
+
+repeat  : REPEAT stlist UNTIL expr 
+		;
+
+for     : FOR ID ASSIGN expr TO expr DO statement
+		;
+
+write   : WRITE OPBRACKET expr CLBRACKET 
+		;
+
+
+if		: IF expr THEN statement
+		| if ELSE statement
+		;
+
+idlist  : ident
+        | idlist COMMA ident
+		;
+		
+var     : VAR idlist
+        ;
+
+
+%%
+// ==========================================================================
+

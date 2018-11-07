@@ -1,0 +1,169 @@
+{
+  "$type": "ProgramTree.BlockNode, SimpleLang",
+  "StList": {
+    "$type": "System.Collections.Generic.List`1[[ProgramTree.StatementNode, SimpleLang]], mscorlib",
+    "$values": [
+      {
+        "$type": "ProgramTree.VarDefNode, SimpleLang",
+        "IdL": {
+          "$type": "System.Collections.Generic.List`1[[ProgramTree.IdNode, SimpleLang]], mscorlib",
+          "$values": [
+            {
+              "$type": "ProgramTree.IdNode, SimpleLang",
+              "Name": "a"
+            },
+            {
+              "$type": "ProgramTree.IdNode, SimpleLang",
+              "Name": "b"
+            },
+            {
+              "$type": "ProgramTree.IdNode, SimpleLang",
+              "Name": "c"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "ProgramTree.WhileNode, SimpleLang",
+        "Expr": {
+          "$type": "ProgramTree.IntNumNode, SimpleLang",
+          "Num": 2
+        },
+        "Stat": {
+          "$type": "ProgramTree.BlockNode, SimpleLang",
+          "StList": {
+            "$type": "System.Collections.Generic.List`1[[ProgramTree.StatementNode, SimpleLang]], mscorlib",
+            "$values": [
+              {
+                "$type": "ProgramTree.AssignNode, SimpleLang",
+                "Id": {
+                  "$type": "ProgramTree.IdNode, SimpleLang",
+                  "Name": "a"
+                },
+                "Expr": {
+                  "$type": "ProgramTree.IntNumNode, SimpleLang",
+                  "Num": 2
+                },
+                "AssOp": 0
+              },
+              {
+                "$type": "ProgramTree.AssignNode, SimpleLang",
+                "Id": {
+                  "$type": "ProgramTree.IdNode, SimpleLang",
+                  "Name": "z"
+                },
+                "Expr": {
+                  "$type": "ProgramTree.IdNode, SimpleLang",
+                  "Name": "c"
+                },
+                "AssOp": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "$type": "ProgramTree.RepeatNode, SimpleLang",
+        "StList": {
+          "$type": "System.Collections.Generic.List`1[[ProgramTree.StatementNode, SimpleLang]], mscorlib",
+          "$values": [
+            {
+              "$type": "ProgramTree.BlockNode, SimpleLang",
+              "StList": {
+                "$type": "System.Collections.Generic.List`1[[ProgramTree.StatementNode, SimpleLang]], mscorlib",
+                "$values": [
+                  {
+                    "$type": "ProgramTree.AssignNode, SimpleLang",
+                    "Id": {
+                      "$type": "ProgramTree.IdNode, SimpleLang",
+                      "Name": "a"
+                    },
+                    "Expr": {
+                      "$type": "ProgramTree.IntNumNode, SimpleLang",
+                      "Num": 2
+                    },
+                    "AssOp": 0
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "Expr": {
+          "$type": "ProgramTree.IntNumNode, SimpleLang",
+          "Num": 2
+        }
+      },
+      {
+        "$type": "ProgramTree.ForNode, SimpleLang",
+        "Asgn": {
+          "$type": "ProgramTree.AssignNode, SimpleLang",
+          "Id": {
+            "$type": "ProgramTree.IdNode, SimpleLang",
+            "Name": "i"
+          },
+          "Expr": {
+            "$type": "ProgramTree.IntNumNode, SimpleLang",
+            "Num": 2
+          },
+          "AssOp": 0
+        },
+        "Expr": {
+          "$type": "ProgramTree.IntNumNode, SimpleLang",
+          "Num": 10
+        },
+        "Stat": {
+          "$type": "ProgramTree.AssignNode, SimpleLang",
+          "Id": {
+            "$type": "ProgramTree.IdNode, SimpleLang",
+            "Name": "a"
+          },
+          "Expr": {
+            "$type": "ProgramTree.BinaryNode, SimpleLang",
+            "operation": "/",
+            "left": {
+              "$type": "ProgramTree.BinaryNode, SimpleLang",
+              "operation": "+",
+              "left": {
+                "$type": "ProgramTree.IntNumNode, SimpleLang",
+                "Num": 2
+              },
+              "right": {
+                "$type": "ProgramTree.IdNode, SimpleLang",
+                "Name": "b"
+              }
+            },
+            "right": {
+              "$type": "ProgramTree.BinaryNode, SimpleLang",
+              "operation": "-",
+              "left": {
+                "$type": "ProgramTree.IdNode, SimpleLang",
+                "Name": "c"
+              },
+              "right": {
+                "$type": "ProgramTree.BinaryNode, SimpleLang",
+                "operation": "*",
+                "left": {
+                  "$type": "ProgramTree.IdNode, SimpleLang",
+                  "Name": "a"
+                },
+                "right": {
+                  "$type": "ProgramTree.IntNumNode, SimpleLang",
+                  "Num": 2
+                }
+              }
+            }
+          },
+          "AssOp": 0
+        }
+      },
+      {
+        "$type": "ProgramTree.WriteNode, SimpleLang",
+        "Expr": {
+          "$type": "ProgramTree.IntNumNode, SimpleLang",
+          "Num": 2
+        }
+      }
+    ]
+  }
+}

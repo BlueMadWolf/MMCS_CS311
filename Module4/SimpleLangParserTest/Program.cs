@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using SimpleLangParser;
-using SimpleLangLexer;
+using SimpleLexer;
 
 namespace SimpleLangParserTest
 {
@@ -16,25 +16,12 @@ namespace SimpleLangParserTest
     a := 2;
     cycle a
     begin
+        while 2 do begin
+           a:=2
+end;
         b := a;
         c := 234
-    end;
-
-    while (12+4)/a*(3-1) do 
-    begin
-        b := 1;
-        c := 21
-    end;  
-    
-   for i := 12 to 24 do
-   begin
-       z := i;
-       b := 2
-   end;
-
-    if b*(1+a) then a := b else a := 2;
-
-    if c then a := c 
+    end
 end";
             TextReader inputReader = new StringReader(fileContents);
             Lexer l = new Lexer(inputReader);
@@ -62,10 +49,3 @@ end";
         }
     }
 }
-
-/*
- lexer error: Syntax error in line 21:
-    if b*(1+) then a := b else a := 2;
-            ^
-Incorrect M
- */
