@@ -125,14 +125,14 @@ namespace ProgramTree
 
     public class BinaryNode : ExprNode
     {
-        public ExprNode left { get; set; }
-        public ExprNode right { get; set; }
-        public char operation;
+        public ExprNode Left { get; set; }
+        public ExprNode Right { get; set; }
+        public char Operation;
         public BinaryNode(ExprNode l, ExprNode r, char op)
         {
-            left = l;
-            right = r;
-            operation = op;
+            Left = l;
+            Right = r;
+            Operation = op;
         }
     }
 
