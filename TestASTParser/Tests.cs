@@ -72,10 +72,11 @@ namespace TestASTParser
         [Test]
         public void TestFor()
         {
-            var tree = ASTParserTests.Parse("begin for i:=2 to 10 do a:=2 end");
+            var tree = ASTParserTests.Parse("begin for i:=2 to 10 do a:=(2+b)/(c-a*2); end");
             Assert.AreEqual("ProgramTree.ForNode, SimpleLang", (string)tree["StList"]["$values"][0]["$type"]);
             Assert.AreEqual("ProgramTree.AssignNode, SimpleLang", (string)tree["StList"]["$values"][0]["Asgn"]["$type"]);
-            Assert.AreEqual("i:=2", ((string)tree["StList"]["$values"][0]["Asgn"]["Name"]).Trim());
+            Assert.AreEqual("i", ((string)tree["StList"]["$values"][0]["Asgn"]["Id"]["Name"]).Trim());
+            Assert.AreEqual("2", ((string)tree["StList"]["$values"][0]["Asgn"]["Expr"]["Num"]).Trim());
             Assert.AreEqual("ProgramTree.IntNumNode, SimpleLang", (string)tree["StList"]["$values"][0]["Expr"]["$type"]);
             Assert.AreEqual("10", ((string)tree["StList"]["$values"][0]["Expr"]["Num"]).Trim());
             Assert.AreEqual("ProgramTree.AssignNode, SimpleLang", (string)tree["StList"]["$values"][0]["Stat"]["$type"]);
