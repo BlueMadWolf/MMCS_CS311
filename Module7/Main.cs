@@ -53,9 +53,9 @@ namespace SimpleCompiler
                     var cviv = new ChangeVarIdVisitor("a", "d");
                     parser.root.Visit(cviv);
                     Console.WriteLine("Переименование переменной a на d:");
-                    pp = new PrettyPrintVisitor();
-                    parser.root.Visit(pp);
-                    Console.WriteLine(pp.Text);
+                    //pp = new PrettyPrintVisitor();
+                    //parser.root.Visit(pp);
+                    Console.WriteLine(cviv.Text);
                     Console.WriteLine("-------------------------------");
 
                     var mncv = new MaxNestCyclesVisitor();

@@ -17,7 +17,7 @@ namespace TestVisitors
             return parser;
         }
     }
-    
+
     [TestFixture]
     public class TestAvgOpCount
     {
@@ -28,9 +28,9 @@ namespace TestVisitors
             Assert.IsTrue(p.Parse());
             var avgCounter = new CountCyclesOpVisitor();
             p.root.Visit(avgCounter);
-            Assert.AreEqual(0, avgCounter.MidCount());            
+            Assert.AreEqual(0, avgCounter.MidCount());
         }
-             
+
         [Test]
         public void ThreeLoopsTest()
         {
@@ -65,10 +65,10 @@ namespace TestVisitors
             Assert.IsTrue(p.Parse());
             var avgCounter = new CountCyclesOpVisitor();
             p.root.Visit(avgCounter);
-            Assert.AreEqual(4, avgCounter.MidCount());            
+            Assert.AreEqual(4, avgCounter.MidCount());
         }
     }
-    
+
     [TestFixture]
     public class TestCommonVariable
     {
@@ -79,9 +79,9 @@ namespace TestVisitors
             Assert.IsTrue(p.Parse());
             var varCounter = new CommonlyUsedVarVisitor();
             p.root.Visit(varCounter);
-            Assert.AreEqual("a", varCounter.mostCommonlyUsedVar());            
+            Assert.AreEqual("a", varCounter.mostCommonlyUsedVar());
         }
-        
+
         [Test]
         public void ManyVarTest()
         {
@@ -89,10 +89,10 @@ namespace TestVisitors
             Assert.IsTrue(p.Parse());
             var varCounter = new CommonlyUsedVarVisitor();
             p.root.Visit(varCounter);
-            Assert.AreEqual("b", varCounter.mostCommonlyUsedVar());            
+            Assert.AreEqual("b", varCounter.mostCommonlyUsedVar());
         }
     }
-    
+
     [TestFixture]
     public class TestExprComplexity
     {
@@ -104,9 +104,9 @@ namespace TestVisitors
             var exprMeter = new ExprComplexityVisitor();
             p.root.Visit(exprMeter);
             var resultList = exprMeter.getComplexityList();
-            CollectionAssert.AreEqual(new int[] {1, 5, 0}, resultList);            
+            CollectionAssert.AreEqual(new int[] { 1, 5, 0 }, resultList);
         }
-        
+
         [Test]
         public void CycleTest()
         {
@@ -115,9 +115,9 @@ namespace TestVisitors
             var exprMeter = new ExprComplexityVisitor();
             p.root.Visit(exprMeter);
             var resultList = exprMeter.getComplexityList();
-            CollectionAssert.AreEqual(new int[] {4, 1}, resultList);            
+            CollectionAssert.AreEqual(new int[] { 4, 1 }, resultList);
         }
-        
+
         [Test]
         public void WriteTest()
         {
@@ -126,9 +126,9 @@ namespace TestVisitors
             var exprMeter = new ExprComplexityVisitor();
             p.root.Visit(exprMeter);
             var resultList = exprMeter.getComplexityList();
-            CollectionAssert.AreEqual(new int[] {2}, resultList);            
+            CollectionAssert.AreEqual(new int[] { 2 }, resultList);
         }
-        
+
         [TestFixture]
         public class TestLoopNestVisitor
         {
@@ -139,9 +139,9 @@ namespace TestVisitors
                 Assert.IsTrue(p.Parse());
                 var loopCounter = new MaxNestCyclesVisitor();
                 p.root.Visit(loopCounter);
-                Assert.AreEqual(1, loopCounter.MaxNest);            
+                Assert.AreEqual(1, loopCounter.MaxNest);
             }
-            
+
             [Test]
             public void ThreeLoopsTest()
             {
@@ -149,35 +149,39 @@ namespace TestVisitors
                 Assert.IsTrue(p.Parse());
                 var loopCounter = new MaxNestCyclesVisitor();
                 p.root.Visit(loopCounter);
-                Assert.AreEqual(3, loopCounter.MaxNest);            
+                Assert.AreEqual(3, loopCounter.MaxNest);
             }
-            
+
             [Test]
             public void LoopTreeTest()
             {
                 Parser p = TestHelpers.Parse(@"begin var a; 
                                                     cycle 2 
+                                                    begin
                                                         cycle 1 
                                                             a:=2; 
                                                         cycle 3 
                                                             cycle 5 
+                                                            begin
                                                                 cycle 6 
                                                                     a:=5; 
                                                                 cycle 4 
-                                                                    write(5) 
+                                                                    write(5)
+                                                            end
+                                                    end
                                               end");
                 Assert.IsTrue(p.Parse());
                 var loopCounter = new MaxNestCyclesVisitor();
                 p.root.Visit(loopCounter);
-                Assert.AreEqual(4, loopCounter.MaxNest);            
+                Assert.AreEqual(4, loopCounter.MaxNest);
             }
-           
+
         }
-       
+
     }
 
     [TestFixture]
-    public class TestVariableRenamer 
+    public class TestVariableRenamer
     {
         [Test]
         public void SimpleTest()
@@ -186,15 +190,15 @@ namespace TestVisitors
             Assert.IsTrue(p.Parse());
             var varRenamer = new ChangeVarIdVisitor("a", "z");
             p.root.Visit(varRenamer);
-            
+
             var varCounter = new CommonlyUsedVarVisitor();
             p.root.Visit(varCounter);
             Assert.AreEqual("z", varCounter.mostCommonlyUsedVar());
         }
     }
-    
+
     [TestFixture]
-    public class TestIfCycleNest 
+    public class TestIfCycleNest
     {
         [Test]
         public void FirstTest()
